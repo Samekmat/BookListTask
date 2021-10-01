@@ -1,6 +1,11 @@
-<a href="{% url 'index' %}">Main page</a>
-<hr>
-<a href="{% url 'add-book' %}">Add book</a>
-<hr>
-<a href="{% url 'book-list' %}">Books list</a>
-<hr>
+<section class="hero is-small is-success">
+    <div class="hero-body">
+        <p class="title">Navigation</p>
+        <a class="subtitle has-text-dark" href="{% url 'index' %}">Main page</a>
+        <hr>
+        <a class="subtitle has-text-dark" href="{% url 'add-book' %}">Add book</a>
+        <hr>
+        <a class="subtitle has-text-dark" href="{% url 'book-list' %}">Books list</a>
+        <hr>
+    </div>
+</section>
