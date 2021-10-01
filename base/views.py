@@ -26,3 +26,14 @@ def add_book(request):
             return redirect('index')
     ctx = {'form': form}
     return render(request, 'book_form.html', ctx)
+
+
+def update_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    form = BookForm(request.POST)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('book-list')
+    return render(request, 'book_form.html', {'form': form})

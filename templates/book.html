@@ -11,5 +11,6 @@
             <li>{{ book.num_of_pages }}</li>
             <li>Book cover image: <a href="{{ book.cover_link }}">Link</a></li>
         </ul>
+        <a class="button is-info is-rounded" href="{% url 'update-book' book.pk %}">Edit</a>
     </div>
 {% endblock %}

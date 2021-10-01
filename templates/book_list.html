@@ -2,12 +2,15 @@
 
 {% block content %}
 
-    <div>
-        <div class="container">
+    <div class="container">
+    <div class="box" style="background-color: lightgray">
+        <p><strong>To delete record, please go to the book page by clicking title</strong></p>
+    </div>
+        <div class="table-container">
 
-            <table class="table">
+            <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                 <thead>
-                <tr>
+                <tr class="is-selected">
                     <th>id</th>
                     <th>Title</th>
                     <th>Author</th>
@@ -15,12 +18,12 @@
                     <th><abbr title="Publish date">Date</abbr></th>
                     <th><abbr title="Publish language">Language</abbr></th>
                     <th><abbr title="Number of pages">Number</abbr></th>
-                    <th>link</th>
+                    <th>Book cover</th>
                 </tr>
                 </thead>
 
                 <tfoot>
-                <tr>
+                <tr class="is-selected">
                     <th>id</th>
                     <th>Title</th>
                     <th>Author</th>
@@ -28,7 +31,7 @@
                     <th><abbr title="Publish date">Date</abbr></th>
                     <th><abbr title="Publish language">Language</abbr></th>
                     <th><abbr title="Number of pages">Number</abbr></th>
-                    <th>link</th>
+                    <th>Book cover</th>
                 </tr>
                 </tfoot>
 
