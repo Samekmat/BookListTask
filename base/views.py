@@ -4,7 +4,7 @@ from .models import Book
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 
 def book_page(request, pk):
