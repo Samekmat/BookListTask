@@ -12,5 +12,6 @@
             <li>Book cover image: <a href="{{ book.cover_link }}">Link</a></li>
         </ul>
         <a class="button is-info is-rounded" href="{% url 'update-book' book.pk %}">Edit</a>
+        <a class="button is-danger is-rounded" href="{% url 'delete-book' book.pk %}">Delete</a>
     </div>
 {% endblock %}
