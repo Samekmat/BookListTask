@@ -7,7 +7,7 @@ class Book(models.Model):
     publish_date = models.DateField()  # Available formats from default ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y']
     ISBN = models.CharField(max_length=13)
     num_of_pages = models.IntegerField()
-    cover_link = models.URLField()
+    cover_link = models.URLField(default='', blank=True)
     publish_lang = models.CharField(max_length=100)
 
     class Meta:
