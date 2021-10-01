@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="text-align: center;" class="container">
+        <ul class="is-lower-roman">
+            <li>{{ book.title }}: Info</li>
+            <li>{{ book.author }}</li>
+            <li>{{ book.publish_date }}</li>
+            <li>{{ book.publish_lang }}</li>
+            <li>{{ book.ISBN }}</li>
+            <li>{{ book.num_of_pages }}</li>
+            <li>Book cover image: <a href="{{ book.cover_link }}">Link</a></li>
+        </ul>
+    </div>
+{% endblock %}
