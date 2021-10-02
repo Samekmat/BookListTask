@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>
+    <div class="container">
+    <h2 class="title is-2 has-text-centered">Add new book</h2>
         <form method="post" action="">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Submit" />
+            <input style="margin-top: 10px" class="button is-rounded is-medium is-info" type="submit"
+                   value="Submit"/>
         </form>
     </div>
 {% endblock content %}

@@ -1,62 +1,72 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
 
 {% block content %}
 
-    <div class="container">
-        <div>
+
+    <div class="has-text-centered">
+        <p class="title has-text-centered" style="margin: 10px"><strong>To edit or delete record, please go to the book page by clicking
+            title!!!</strong></p>
+    </div>
+
+    <div class="columns" style="margin:10px">
+
+        <div class="column is-one-fifth">
             <form method="get">
-                {{ filter.form }}
-                <button class="is-rounded" type="submit">Filter search</button>
+                {{ filter.form|bootstrap }}
+                <button class=" button is-rounded is-small is-info" style="margin: 10px;" type="submit">Filter search
+                </button>
             </form>
         </div>
-        <div class="box" style="background-color: lightgray">
-            <p><strong>To edit or delete record, please go to the book page by clicking title</strong></p>
-        </div>
-        <div class="table-container">
 
-            <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                <thead>
-                <tr class="is-selected">
-                    <th>id</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>ISBN</th>
-                    <th><abbr title="Publish date">Date</abbr></th>
-                    <th><abbr title="Publish language">Language</abbr></th>
-                    <th><abbr title="Number of pages">Number</abbr></th>
-                    <th>Book cover</th>
-                </tr>
-                </thead>
+        <div class="column">
+            <div class="table-container">
 
-                <tfoot>
-                <tr class="is-selected">
-                    <th>id</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>ISBN</th>
-                    <th><abbr title="Publish date">Date</abbr></th>
-                    <th><abbr title="Publish language">Language</abbr></th>
-                    <th><abbr title="Number of pages">Number</abbr></th>
-                    <th>Book cover</th>
-                </tr>
-                </tfoot>
-
-                <tbody>
-                {% for book in books %}
-                    <tr>
-                        <th>{{ book.id }}</th>
-                        <td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
-                        <td>{{ book.author }}</td>
-                        <td>{{ book.ISBN }}</td>
-                        <td>{{ book.publish_date }}</td>
-                        <td>{{ book.publish_lang }}</td>
-                        <td>{{ book.num_of_pages }}</td>
-                        <td><a href="{{ book.cover_link }}">Link</a></td>
+                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                    <tr class="is-selected">
+                        <th>id</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th><abbr title="Publish date">Date</abbr></th>
+                        <th><abbr title="Publish language">Language</abbr></th>
+                        <th><abbr title="Number of pages">Number</abbr></th>
+                        <th>Book cover</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tfoot>
+                    <tr class="is-selected">
+                        <th>id</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th><abbr title="Publish date">Date</abbr></th>
+                        <th><abbr title="Publish language">Language</abbr></th>
+                        <th><abbr title="Number of pages">Number</abbr></th>
+                        <th>Book cover</th>
+                    </tr>
+                    </tfoot>
+
+                    <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <th>{{ book.id }}</th>
+                            <td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.ISBN }}</td>
+                            <td>{{ book.publish_date }}</td>
+                            <td>{{ book.publish_lang }}</td>
+                            <td>{{ book.num_of_pages }}</td>
+                            <td><a href="{{ book.cover_link }}">Link</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 
 {% endblock %}
