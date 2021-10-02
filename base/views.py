@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import BookForm
 from .models import Book
+from .filters import BookFilter
 
 
 def index(request):
@@ -14,7 +15,10 @@ def book_page(request, pk):
 
 def book_list(request):
     books = Book.objects.all()
-    return render(request, 'book_list.html', {'books': books})
+    my_filter = BookFilter(request.GET, queryset=books)
+    books = my_filter.qs
+    ctx = {'books': books, 'filter': my_filter}
+    return render(request, 'book_list.html', ctx)
 
 
 def add_book(request):
