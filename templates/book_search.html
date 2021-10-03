@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+
+    <div>
+        <h3 class="title has-text-black">Search Book API</h3>
+        <hr/>
+        <form method="GET">
+            <input type="text" name="query" placeholder="Search by query">
+            <input type="text" name="titleS" placeholder="title">
+            <input type="text" name="authorS" placeholder="author">
+            <input type="text" name="isbnS" placeholder="isbn">
+            <input type="text" name="publisherS" placeholder="publisher">
+            <input type="text" name="subjectS" placeholder="subject">
+            <input type="text" name="lccnS" placeholder="LCCN Number">
+            <input type="text" name="oclcS" placeholder="OCLC number">
+            <button type="submit" class="is-rounded is-medium is-warning">SEARCH BOOK</button>
+        </form>
+    </div>
+
+    <div>
+        {% for book in books_found %}
+            <div class="card">
+                <img class="card-image" src="{{ book.cover_link }}" alt="Book image">
+                <div class="card-content">
+                    <p class="card-header-title">Title: {{ book.title }}</p>
+                    <p class="card-header-title">Author: {{ book.author }}</p>
+                    <p class="card-header-title">Publish Date: {{ book.publish_date }}</p>
+                    <p class="card-header-title">Publish language: {{ book.publish_lang }}</p>
+                    <p class="card-header-title">ISBN: {{ book.ISBN }}</p>
+                    <p class="card-header-title">Number Of Pages: {{ book.num_of_pages }}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

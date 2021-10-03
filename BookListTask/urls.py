@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from base.views import index, add_book, book_list, book_page, update_book, delete_book
+from base.views import index, add_book, book_list, book_page, update_book, delete_book, get_books
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('add-book/', add_book, name='add-book'),
     path('update-book/<int:pk>/', update_book, name='update-book'),
     path('delete-book/<int:pk>/', delete_book, name='delete-book'),
+    path('import-books/', get_books, name='get-books'),
 ]
