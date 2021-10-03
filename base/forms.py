@@ -2,7 +2,7 @@ from django.forms import ModelForm, TextInput
 from .models import Book
 
 
-STYLE = {'class': 'input is-dark is-rounded is-large is-info'}
+STYLE = {'class': 'input is-dark is-rounded is-medium is-info'}
 
 
 class BookForm(ModelForm):

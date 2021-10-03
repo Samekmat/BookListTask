@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container">
-    <h2 class="title is-2 has-text-centered">Add new book</h2>
+    <h3 class="title is-2 has-text-centered" style="margin: 1px">Add new book</h3>
         <form method="post" action="">
             {% csrf_token %}
             {{ form.as_p }}
