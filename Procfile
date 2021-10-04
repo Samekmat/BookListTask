@@ -1,1 +1,1 @@
-web: gunicorn BookTaskList.wsgi
+web: gunicorn BookListTask.wsgi
