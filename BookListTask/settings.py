@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'base',
     'django_filters',
     'bootstrapform',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

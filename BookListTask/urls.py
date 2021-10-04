@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from base.views import index, add_book, book_list, book_page, update_book, delete_book, get_books
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('update-book/<int:pk>/', update_book, name='update-book'),
     path('delete-book/<int:pk>/', delete_book, name='delete-book'),
     path('import-books/', get_books, name='get-books'),
+    path('api/', include('base.api.urls'))
 ]
