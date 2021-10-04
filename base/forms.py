@@ -12,7 +12,8 @@ class BookForm(ModelForm):
         widgets = {
             'title': TextInput(attrs=STYLE),
             'author': TextInput(attrs=STYLE),
-            'publish_date': TextInput(attrs=STYLE),
+            'publish_date': TextInput(attrs={'class': 'input is-dark is-rounded is-medium is-info',
+                                             'placeholder': 'YYYY-MM-DD'}),
             'ISBN': TextInput(attrs=STYLE),
             'num_of_pages': TextInput(attrs=STYLE),
             'cover_link': TextInput(attrs=STYLE),
