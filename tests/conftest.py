@@ -55,7 +55,7 @@ def book_data():
 @pytest.fixture
 def books_fake_db():
     for _ in range(10):
-        book = Book.objects.create(
+        Book.objects.create(
             title=f'title{_}',
             author=fake_author,
             publish_date=fake_date,
