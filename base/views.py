@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from .forms import BookForm
 from .models import Book
@@ -10,7 +11,10 @@ def index(request):
 
 
 def book_page(request, pk):
-    book = Book.objects.get(pk=pk)
+    try:
+        book = Book.objects.get(pk=pk)
+    except Book.DoesNotExist:
+        raise Http404('Book does not exist')
     return render(request, 'book.html', {'book': book})
 
 
