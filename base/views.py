@@ -68,6 +68,7 @@ def delete_book(request, pk):
 
 
 def get_books(request):
+    bulk_list = []
     books_found = {}
     url = f'https://www.googleapis.com/books/v1/volumes?q='
     if 'query' in request.GET:
@@ -131,7 +132,7 @@ def get_books(request):
 
                 if book['volumeInfo']['industryIdentifiers']:
                     industry_identifiers = book['volumeInfo']['industryIdentifiers']
-                    
+
                     for id in industry_identifiers:
                         if id['type'] == 'ISBN_10' or id['type'] == 'ISBN_13':
                             isbn = id['identifier']
@@ -156,11 +157,11 @@ def get_books(request):
                     cover_link=cover,
                     publish_lang=language
                 )
-                book_data.save()
+                bulk_list.append(book_data)
                 books_found = Book.objects.all().order_by('-id')
             except KeyError:
                 pass
             except Exception as e:
                 print(e)
-
+        Book.objects.bulk_create(bulk_list)
     return render(request, 'book_search.html', {'books_found': books_found})
