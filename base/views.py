@@ -4,7 +4,7 @@ from .forms import BookForm
 from .models import Book
 from .filters import BookFilter
 import requests
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def index(request):
     return render(request, 'base.html')
@@ -19,9 +19,20 @@ def book_page(request, pk):
 
 
 def book_list(request):
-    books = Book.objects.all()
-    my_filter = BookFilter(request.GET, queryset=books)
-    books = my_filter.qs
+    book_list = Book.objects.all()
+    my_filter = BookFilter(request.GET, queryset=book_list)
+    book_list = my_filter.qs
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(book_list, 6)
+
+    try:
+        books = paginator.page(page)
+    except PageNotAnInteger:
+        books = paginator.page(1)
+    except EmptyPage:
+        books = paginator.page(paginator.num_pages)
+
     ctx = {'books': books, 'filter': my_filter}
     return render(request, 'book_list.html', ctx)
 

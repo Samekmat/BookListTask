@@ -4,26 +4,27 @@
 {% block content %}
 
 
-    <div class="container">
-        <p class="title has-text-centered" style="margin: 20px; padding-left: 35px">
-            <strong>To edit or delete record, please go to the book page by clicking on the title.</strong></p>
+<div class="container">
+    <p class="title has-text-centered" style="margin: 20px; padding-left: 35px">
+        <strong>To edit or delete record, please go to the book page by clicking on the title.</strong>
+    </p>
+</div>
+
+<div class="columns" style="margin:10px">
+
+    <div class="column is-one-fifth">
+        <form method="get">
+            {{ filter.form|bootstrap }}
+            <button class=" button is-rounded is-small is-info" style="margin: 10px;" type="submit">Filter search
+            </button>
+        </form>
     </div>
 
-    <div class="columns" style="margin:10px">
+    <div class="column">
+        
 
-        <div class="column is-one-fifth">
-            <form method="get">
-                {{ filter.form|bootstrap }}
-                <button class=" button is-rounded is-small is-info" style="margin: 10px;" type="submit">Filter search
-                </button>
-            </form>
-        </div>
-
-        <div class="column">
-            <div class="table-container">
-
-                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                    <thead>
+            <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
                     <tr class="is-selected">
                         <th>id</th>
                         <th>Title</th>
@@ -34,9 +35,9 @@
                         <th><abbr title="Number of pages">Number</abbr></th>
                         <th>Book cover</th>
                     </tr>
-                    </thead>
+                </thead>
 
-                    <tfoot>
+                <tfoot>
                     <tr class="is-selected">
                         <th>id</th>
                         <th>Title</th>
@@ -47,26 +48,53 @@
                         <th><abbr title="Number of pages">Number</abbr></th>
                         <th>Book cover</th>
                     </tr>
-                    </tfoot>
+                </tfoot>
 
-                    <tbody>
+                <tbody>
                     {% for book in books %}
-                        <tr>
-                            <th>{{ book.id }}</th>
-                            <td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
-                            <td>{{ book.author }}</td>
-                            <td>{{ book.ISBN }}</td>
-                            <td>{{ book.publish_date }}</td>
-                            <td>{{ book.publish_lang }}</td>
-                            <td>{{ book.num_of_pages }}</td>
-                            <td><a href="{{ book.cover_link }}">Link</a></td>
-                        </tr>
+                    <tr>
+                        <th>{{ book.id }}</th>
+                        <td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.ISBN }}</td>
+                        <td>{{ book.publish_date }}</td>
+                        <td>{{ book.publish_lang }}</td>
+                        <td>{{ book.num_of_pages }}</td>
+                        <td><a href="{{ book.cover_link }}">Link</a></td>
+                    </tr>
                     {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                </tbody>
+            </table>
+
+            {% if books.has_other_pages %}
+            <nav class="pagination" role="navigation" aria-label="pagination">
+
+                {% if books.has_previous %}
+                <a class="pagination-previous" href="?page={{ books.previous_page_number }}">Previous</a>
+                {% endif %}
+                {% if books.has_next %}
+                <a class="pagination-next" href="?page={{ books.next_page_number }}">Next</a>
+                {% endif %}
+
+                <ul class="pagination-list">
+                    {% for i in books.paginator.page_range %}
+                    {% if books.number == i %}
+                    <li>
+                        <a class="pagination-link is-current" aria-label="Page {{ i }}" aria-current="page">{{ i }}</a> 
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page {{ i }}" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+            {% endif %}
+
+        
     </div>
+</div>
 
 
 {% endblock %}
