@@ -115,7 +115,7 @@ def get_books(request):
                 title = ''
                 authors = ''
                 date = ''
-                isbn = []
+                isbn = ''
                 num_of_pg = ''
                 cover = ''
                 language = ''
@@ -130,7 +130,13 @@ def get_books(request):
                     date = book['volumeInfo']['publishedDate']
 
                 if book['volumeInfo']['industryIdentifiers']:
-                    isbn = book['volumeInfo']['industryIdentifiers']
+                    industry_identifiers = book['volumeInfo']['industryIdentifiers']
+                    
+                    for id in industry_identifiers:
+                        if id['type'] == 'ISBN_10' or id['type'] == 'ISBN_13':
+                            isbn = id['identifier']
+                        else:
+                            isbn = ''
 
                 if book['volumeInfo']['pageCount']:
                     num_of_pg = book['volumeInfo']['pageCount']
